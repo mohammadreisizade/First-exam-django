@@ -1,0 +1,76 @@
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>
+<div>
+    <div>
+        <h1>
+            Here is your exam report:
+        </h1>
+    </div>
+    <div>
+        <p>User : {{username}}</p>
+        <p>Exam : {{exam.title}}</p>
+
+    </div>
+</div>
+
+<div>
+
+    <h1> score of 20 : {{from_20}} <h1>
+
+    <h1> Average in this exam : {{total_average_this_exam}} </h1>
+    
+    <h6> of {{number_of_all_users}} user/users </h6>
+
+
+    <h2>score : {{score}}</h2>
+
+    <h2>total : {{total}}</h2>
+
+    <h4>wrong : {{wrong}}</h4>
+
+    <h4>correct : {{correct}}</h4>
+
+</div>
+
+<br/>
+<br/>
+<br/>
+<div>
+
+
+    {% for q in questions %}
+    <h2>{{forloop.counter}}) {{q}}</h2>
+    
+        {% for choice in q.choice_set.all %}
+        <h3> --  {{choice}}</h3>
+        {% endfor %}
+
+        {% for choice in q.choice_set.all %}
+            {% if choice.correct is True %}
+                <h4> correct answer is : {{choice}} </h4>
+
+                {% for select in selected_choice %}
+                {% if select.question.id == q.id %}
+                
+                    <h4>your answer is: {{select}} </h4>
+                    {% if select.selectedChoice_text == choice.choice_text %}
+                    <h3> Correct! </h3>
+                    {% else %}
+                    <h3> Wrong! </h3>            
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+
+            {% endif %}
+        {% endfor %}
+
+
+
+
+        <br/>
+        <br/>
+
+    {% endfor %}
+
+</div>

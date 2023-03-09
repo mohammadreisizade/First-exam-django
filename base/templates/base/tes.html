@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% for i in exam %}
+
+<h1> User : {{i.user}} </h1>
+<h1> Exam : {{i.exam}} </h1>
+<h2> Score : {{i.score}} </h2>
+<h2> Created at : {{i.created}} </h2>
+<h2> edited at : {{i.edited}} </h2>
+------------------------------------
+{% endfor %}
+
+<h1> Total average : {{total_average}} </h1>
+<h6> of {{number_of_all_this_user_exams}} exam/exams </h6>
+
+<h1> Total average of today : {{total_average_today}} </h1>
+<h6> of {{number_of_today_this_user_exams}} exam/exams </h6>
+
+<h1> Total average of the last 30 days : {{total_average_this_month}} </h1>
+<h6> of {{number_of_this_month_this_user_exams}} exam/exams </h6>
+
+<h1> Total average of the last 365 days : {{total_average_this_year}} </h1>
+<h6> of {{number_of_this_year_this_user_exams}} exam/exams </h6> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+{% if request.user.is_staff %}
+it's staff
+{% else %}
+it's else
+{% endif %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endcomment %}
+
+
+
+

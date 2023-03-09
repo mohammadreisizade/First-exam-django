@@ -1,0 +1,29 @@
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>
+
+{% if exam %}
+
+<h1> exam: {{exam.title}} </h1>
+
+{% endif %}
+
+<h4>----------------------------------------------------------------------------</h4>
+
+{% if score %}
+{% for item in score %}
+
+<h2> {{item.user}}:   {{item.score}} </h2>
+
+{% endfor %}
+{% endif %}
+
+

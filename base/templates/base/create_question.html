@@ -1,0 +1,45 @@
+<h3>You can add question</h3>
+<br/>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="question">Question</label>
+        <input id="question" name="question" />
+        <br/>
+
+        <label for="choice1">Correct choice</label>
+        <input id="choice1" name="correct_choice" />
+        <br/>
+
+        <label for="choice2">other Choice</label>
+        <input id="choice2" name="choice2" />
+        <br/>
+
+        <label for="choice3">other Choice</label>
+        <input id="choice3" name="choice3" />
+        <br/>
+
+        <label for="choice4">other Choice</label>
+        <input id="choice4" name="choice4" />
+        <br/>
+        
+        {% comment %} {{form.as_p}} {% endcomment %}
+        <input type="submit" value="Save and add another" name="save_next" />
+        <br/>
+        <input type="submit" value="Save" name="save_home" />
+
+    </form>
+
+</div>
+
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>

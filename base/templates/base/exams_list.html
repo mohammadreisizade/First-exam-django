@@ -1,0 +1,12 @@
+<h1> All exams: </h1>
+<div>
+{% for exam in exams %}
+
+    <h2> <a href="{% url 'base:results_exams' exam.id %}"> {{exam.title}} </a> </h2>
+
+{% endfor %}
+</div>
+
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>

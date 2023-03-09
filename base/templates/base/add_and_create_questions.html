@@ -1,0 +1,9 @@
+<div>
+    
+    <h1><a href="{% url 'base:addQuestion' %}"> Add question by a text file </a></h1>
+    <h1><a href="{% url 'base:create_question' %}"> Create question </a></h1>
+
+</div>
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>

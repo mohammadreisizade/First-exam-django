@@ -1,0 +1,21 @@
+{% if request.user.is_staff %}
+
+<div>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        
+        {{form.as_p}}
+        <input type="submit" value="Submit" />
+    </form>
+
+</div>
+
+{% else %}
+
+You are not allowed
+
+{% endif %}
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>

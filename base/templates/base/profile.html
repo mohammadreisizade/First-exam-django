@@ -1,0 +1,76 @@
+<h1> This is your profile "{{user.username}}" </h1>
+<br/>
+
+<h1> Your total average : {{total_average}} </h1>
+<h6> of {{number_of_all_this_user_exams}} exam/exams </h6>
+<h3> average of all: {{total_average_all}} </h3>
+<br/>
+--------------------------------------------------------
+<br/>
+<h1> Total average of today : {{total_average_today}} </h1>
+<h6> of {{number_of_today_this_user_exams}} exam/exams </h6>
+<h3> average of all: {{total_average_today_all}} </h3>
+<br/>
+--------------------------------------------------------
+<br/>
+{% if number_of_last_month_this_user_exams != 0 %}
+<h1> Total average of your last month : {{total_average_last_month}} </h1>
+{% else %}
+<h5> This is your first month !!! There is no score for you in the last month. </h5>
+{% endif %}
+<h1> Total average of your last 30 days (this month) : {{total_average_this_month}} </h1>
+
+<h6> of {{number_of_this_month_this_user_exams}} exam/exams </h6>
+<h3> average of all: {{total_average_this_month_all}} </h3>
+<br/>
+--------------------------------------------------------
+<br/>
+{% if number_of_last_year_this_user_exams != 0 %}
+<h1> Total average of your last year : {{total_average_last_year}} </h1>
+{% else %}
+<h5> This is your first year !!! There is no score for you in the last year. </h5>
+{% endif %}
+<h1> Total average of your last 365 days (this year) : {{total_average_this_year}} </h1>
+
+<h6> of {{number_of_this_year_this_user_exams}} exam/exams </h6>
+<h3> average of all: {{total_average_this_year_all}} </h3>
+<br/>
+*******************************************************************
+<br/>
+{% if request.user.is_staff %}
+
+<h2> <a href="{% url 'base:exams_list' %}"> See results </a></h2>
+
+<h2> <a href="{% url 'base:create_exam' %}"> Create an exam </a> </h2>
+
+{% else %}
+
+
+{% if score %}
+
+<h2> Click to see your scores: </h2>
+{% for item in score %}
+<h3> <a href="{% url 'base:result' item.exam.id %}"> {{item.exam.title}} </a> </h3>
+{% endfor %}
+
+{% else %}
+<h3> List of your exams is empty </h3>
+{% endif %}
+
+
+{% if exceptList %}
+<h2> Other exams: </h2>
+{% for i in exceptList %}
+<h3> <a href="{% url 'base:exam' i.id %}"> {{i.title}} </a> </h3>
+{% endfor %}
+{% else %}
+<h3> You've performed all exams!!! </h3>
+{% endif %}
+
+<br/>
+
+{% endif %}
+
+<a href="{{request.META.HTTP_REFERER}}"> Back to previous page </a>
+<br/>
+<a href="{% url 'base:home' %}"> Back to home </a>
